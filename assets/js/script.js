@@ -65,7 +65,8 @@ for (var i = 0; i < btns.length; i++) {
 
 */
 
-$(document).ready(function() {
+$(document).ready(function () {
+
   $('.stonefiregrill-video').magnificPopup({
     disableOn: 700,
     type: 'iframe',
@@ -75,32 +76,37 @@ $(document).ready(function() {
 
     fixedContentPos: false
   });
+
+  $(document).on("scroll", onScroll);
+
+  //smoothscroll
+  $('a[href^="#"]').on('click', function (e) {
+      e.preventDefault();
+      $(document).off("scroll");
+
+      $('a').each(function () {
+           $(this).removeClass('active');
+       })
+       $(this).addClass('active');
+
+      var target = this.hash,
+          menu = target;
+      $target = $(target);
+      $('html, body').stop().animate({
+          'scrollTop': $target.offset().top+2
+      }, 500, 'swing', function () {
+          window.location.hash = target;
+          $(document).on("scroll", onScroll);
+      });
+  });
+
+  $('#mobilenav .menu-item').click(function() {
+      console.log("test");
+       $('.navbar-collapse').collapse('hide');
+  });
+
 });
 
-$(document).ready(function () {
-    $(document).on("scroll", onScroll);
-
-    //smoothscroll
-    $('a[href^="#"]').on('click', function (e) {
-        e.preventDefault();
-        $(document).off("scroll");
-
-        $('a').each(function () {
-             $(this).removeClass('active');
-         })
-         $(this).addClass('active');
-
-        var target = this.hash,
-            menu = target;
-        $target = $(target);
-        $('html, body').stop().animate({
-            'scrollTop': $target.offset().top+2
-        }, 500, 'swing', function () {
-            window.location.hash = target;
-            $(document).on("scroll", onScroll);
-        });
-    });
-});
 
 function onScroll(event){
     var scrollPos = $(document).scrollTop();
@@ -115,4 +121,4 @@ function onScroll(event){
             currLink.removeClass("active");
         }
     });
-}
+};

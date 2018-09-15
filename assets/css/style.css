@@ -512,13 +512,17 @@ a.hoverline:hover {
   font-size: 2rem;
 }
 
-.active, .menu-item a:hover {
-  background-color: #fafafa;
+#nav-bar-container .active, .menu-item a:hover {
   border-right: 3px solid;
 }
 
-#mobilenav .active, .menu-item a:hover {
-  padding-right: 20px;
+
+#mobilenav a {
+  color: #444;
+}
+
+#mobilenav .menu-item:hover {
+  background-color: #e4e4e4;
 }
 
 .right {
